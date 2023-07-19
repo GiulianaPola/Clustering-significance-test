@@ -31,7 +31,7 @@ call=os.path.abspath(os.getcwd())
 def print_help():
   import os
   mandatory={"-t | --tree <tree_file>":"tree file in nexus format"}
-  optional={"-m | --meta <tsv_file>":"metadata file in tsv format (default: 'metadata.tsv')","-i1 <integer>":"index of the column with tree lables (ex: genus names), mandatory if -m is called", "-i2 <integer>":"index of the column with lables to test (ex: random numbers), mandatory if -m is called","-o | --out <string | path>":"output directory path (default='output_dir)'", "-p | --p_value <float>":"significance level for cluster selection (default=0.05)", "-r | --replicates <integer>":"number of permutation replicates (default=10000)","-v":"version","-h":"help"}
+  optional={"-m | --meta <tsv_file>":"metadata file in tsv format (default: 'metadata.tsv')","-i1 <integer>":"index of the column with tree lables (ex: genus names), mandatory if -m is called", "-i2 <integer>":"index of the column with lables to test (ex: access codes), mandatory if -m is called","-o | --out <string | path>":"output directory path (default='output_dir)'", "-p | --p_value <float>":"significance level for cluster selection (default=0.05)", "-r | --replicates <integer>":"number of permutation replicates (default=10000)","-v":"version","-h":"help"}
   try:
     size = int(str(os.get_terminal_size()).split("columns=")[-1].split(",")[0])
   except Exception as e:
@@ -55,8 +55,8 @@ def print_help():
   header = ['(c) 2023. Bas E. Dutilh, Yasas Wijesekara & Giuliana Pola']
   header.append('For more information access: https://github.com/Yasas1994/Clustering-significance-test')
   header.append("\nUsage:")
-  header.append("permutation_test.py -t <tree_file> <optional parameters>")
-  header.append("permutation_test.py -t <tree_file> -m <meta_file> -i1 <index_tree_labels> -i2 <index_test_labels> <optional parameters>")
+  #header.append("permutation_test.py -conf <configuration_file>")
+  header.append("permutation_test.py -t <tree_file> -i1 <index_tree_labels> -i2 <index_test_labels> <optional parameters>")
   header.append("\nMandatory parameters:")
   
   if size==None:

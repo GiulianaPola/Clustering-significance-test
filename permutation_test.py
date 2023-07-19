@@ -56,7 +56,8 @@ def print_help():
   header.append('For more information access: https://github.com/Yasas1994/Clustering-significance-test')
   header.append("\nUsage:")
   #header.append("permutation_test.py -conf <configuration_file>")
-  header.append("permutation_test.py -t <tree_file> -i1 <index_tree_labels> -i2 <index_test_labels> <optional parameters>")
+  header.append("permutation_test.py -t <tree_file> <optional parameters>")
+  header.append("permutation_test.py -t <tree_file> -m <meta_file> -i1 <index_tree_labels> -i2 <index_test_labels> <other optional parameters>")
   header.append("\nMandatory parameters:")
   
   if size==None:

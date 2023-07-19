@@ -22,7 +22,7 @@ import matplotlib.pyplot as plt
 import argparse
 import os
 
-version="1.0.1"
+version="1.0.2"
 print('Clustering significance test {}'.format(version))
 
 start_time = datetime.now()
@@ -50,10 +50,11 @@ def print_help():
       pass
   
   string=''
+  
+  #header = ['Clustering significance test {}'.format(version)]
   header = ['(c) 2023. Bas E. Dutilh, Yasas Wijesekara & Giuliana Pola']
   header.append('For more information access: https://github.com/Yasas1994/Clustering-significance-test')
   header.append("\nUsage:")
-  #header.append("permutation_test.py -conf <configuration_file>")
   header.append("permutation_test.py -t <tree_file> <optional parameters>")
   header.append("permutation_test.py -t <tree_file> -m <meta_file> -i1 <index_tree_labels> -i2 <index_test_labels> <optional parameters>")
   header.append("\nMandatory parameters:")
@@ -219,15 +220,6 @@ if args.out is not None and os.path.exists(args.out):
 
 os.makedirs(args.out)
 
-if not args.meta:
-  args.meta='metadata.tsv'
-  args.i1=2
-  args.i2=1
-if not args.p_value:
-  args.p_value=0.05
-if not args.replicates:
-  args.replicates=10000
-
 try:
   log=open(os.path.join(args.out, 'file.log'), 'w')
   try:
@@ -271,6 +263,21 @@ except Exception as e:
     exit()
 
 log=open(os.path.join(args.out, 'file.log'), 'a')
+
+if not args.meta:
+  message='Metadata file not provided, constructing a new metadata file.'
+  args.meta='metadata.tsv'
+  if (not args.i1==None) or (not args.i2==None):
+    message+=' Parameters -i1 and -i2 ignored.'
+  print(message)
+  message+='\n'
+  log.write(message)
+  args.i1=2
+  args.i2=1
+if not args.p_value:
+  args.p_value=0.05
+if not args.replicates:
+  args.replicates=10000
 
 if args.meta=='metadata.tsv' and not os.path.exists(args.meta):
   args.meta = os.path.join(args.out, 'metadata.tsv')
